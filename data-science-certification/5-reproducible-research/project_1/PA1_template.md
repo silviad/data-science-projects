@@ -1,0 +1,181 @@
+# Reproducible Research: Peer Assessment 1
+
+
+## Loading and preprocessing the data
+
+1. Load the data
+
+    
+    ```r
+    activity <- read.csv("activity.csv")
+    ```
+
+
+
+
+## What is mean total number of steps taken per day?
+
+1. Histogram of the total number of steps taken each day
+
+    
+    ```r
+    steps.date <- aggregate(steps ~ date, data = activity, FUN = sum)
+    barplot(steps.date$steps, names.arg = steps.date$date, col = "blueviolet", xlab = "", 
+        ylab = "steps", main = "Total number of steps per day", las = 2)
+    ```
+    
+    ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
+    
+2. **Mean** and **median** total number of steps taken per day
+
+    
+    ```r
+    mean(steps.date$steps)
+    ```
+    
+    ```
+    ## [1] 10766
+    ```
+    
+    ```r
+    median(steps.date$steps)
+    ```
+    
+    ```
+    ## [1] 10765
+    ```
+
+
+## What is the average daily activity pattern?
+
+1. Time series plot of the 5-minute interval and the average number of steps taken, averaged across all days
+ 
+    
+    ```r
+    steps.interval <- aggregate(steps ~ interval, data = activity, FUN = mean)
+    plot(steps.interval, type = "l", main = "Average number of steps across all days")
+    ```
+    
+    ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+
+
+2. The 5-minute interval that, on average across all the days in the dataset, contains the maximum number of steps
+
+    
+    ```r
+    steps.interval$interval[which.max(steps.interval$steps)]
+    ```
+    
+    ```
+    ## [1] 835
+    ```
+
+
+
+## Imputing missing values
+
+There are a number of days/intervals where there are missing
+values (coded as `NA`). The presence of missing days may introduce
+bias into some calculations or summaries of the data.
+
+1. Total number of missing values in the dataset
+
+    
+    ```r
+    sum(is.na(activity$steps))
+    ```
+    
+    ```
+    ## [1] 2304
+    ```
+
+
+2. Fill the missing values in the dataset with the mean for that 5-minute interval and create a new dataset equal to the original one but with the missing data filled in
+
+    
+    ```r
+    colnames(steps.interval)[2] <- "steps.mean"
+    activity <- merge(activity, steps.interval, by = "interval")
+    
+    na.index <- is.na(activity$steps)
+    activity$steps[na.index] <- activity$steps.mean[na.index]
+    
+    activity <- activity[, 1:3]
+    ```
+
+
+3. Histogram of the total number of steps taken each day with missing values filled in 
+
+    
+    ```r
+    steps.date <- aggregate(steps ~ date, data = activity, FUN = sum)
+    barplot(steps.date$steps, names.arg = steps.date$date, col = "blueviolet", xlab = "", 
+        ylab = "steps", main = "Total number of steps per day", las = 2)
+    ```
+    
+    ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
+
+
+4. **Mean** and **median** total number of steps taken per day with missing values filled in
+
+    
+    ```r
+    mean(steps.date$steps)
+    ```
+    
+    ```
+    ## [1] 10766
+    ```
+    
+    ```r
+    median(steps.date$steps)
+    ```
+    
+    ```
+    ## [1] 10766
+    ```
+
+
+## Are there differences in activity patterns between weekdays and weekends?
+
+1. New factor variable with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day
+
+    
+    ```r
+    Sys.setlocale(locale = "C")
+    install.packages("ggplot2", repos = "http://cran.rstudio.com/")
+    library(ggplot2)
+    ```
+
+    
+    
+    ```r
+    weekend <- weekdays(as.Date(activity$date)) %in% c("Saturday", "Sunday")
+    activity$weekdays[weekend] <- "weekend"
+    activity$weekdays[!weekend] <- "weekday"
+    activity$weekdays <- factor(activity$weekdays)
+    ```
+
+
+2. Panel plot containing a time series plot of the 5-minute interval and the average number of steps taken, averaged across all weekday days or weekend days 
+
+    
+    ```r
+    weekend = subset(activity, weekdays == "weekend")
+    steps.interval.weekend <- aggregate(steps ~ interval, data = weekend, FUN = mean)
+    steps.interval.weekend$weekdays = "weekend"
+    
+    weekday = subset(activity, weekdays == "weekday")
+    steps.interval.weekday <- aggregate(steps ~ interval, data = weekday, FUN = mean)
+    steps.interval.weekday$weekdays = "weekday"
+    
+    steps.interval <- rbind(steps.interval.weekend, steps.interval.weekday)
+    
+    qplot(interval, steps, data = steps.interval, facets = weekdays ~ ., geom = "line", 
+        ylab = "Number of   steps")
+    ```
+    
+    ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
+
+

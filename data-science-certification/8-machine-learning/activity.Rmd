@@ -27,9 +27,6 @@ For this analysis, we will use the caret package (Classification And REgression 
 ```{r, warning = FALSE, message = FALSE}
 library(caret)
 ```
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-library(randomForest)
-```
 ### Data loading
 The training and test data used for the project are available at https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv and https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv respectively.
  

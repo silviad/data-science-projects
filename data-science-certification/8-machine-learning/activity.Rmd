@@ -27,7 +27,7 @@ For this analysis, we will use the caret package (Classification And REgression 
 ```{r, warning = FALSE, message = FALSE}
 library(caret)
 ```
-```{r, echo = FALSE, warning = FALSE, , message = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(randomForest)
 ```
 ### Data loading

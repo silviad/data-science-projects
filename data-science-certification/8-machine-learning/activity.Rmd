@@ -1,0 +1,78 @@
+# Predicting weight-lifting styles
+
+## Introduction
+
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. 
+In general, there are many potential applications for Human Activity Recognition, like elderly monitoring, life log systems for monitoring energy expenditure and for supporting weight-loss programs, and digital assistants for weight lifting exercises.
+
+One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. The goal of the project is to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants who were asked to perform barbell lifts correctly and incorrectly in 5 different ways. 
+
+### References
+For more details see http://groupware.les.inf.puc-rio.br/har
+
+### Research question
+The research question for this project can be expressed like:   
+
+- Is it possible to predict the manner in which a person perform barbell from his/her movements?
+
+In more details: 
+
+- Is it possible to predict the classe variable from accelerometers measures variables?
+
+
+## 1. Data preprocessing
+
+### Libraries
+For this analysis, we will use the caret package (Classification And REgression Training) that contains a complete set of functions to create predictive models like data splitting, pre-processing, feature selection, training and testing models.
+```{r, warning = FALSE, message = FALSE}
+library(caret)
+```
+```{r, echo = FALSE, warning = FALSE, , message = FALSE}
+library(randomForest)
+```
+### Data loading
+The training and test data used for the project are available at https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv and https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv respectively.
+ 
+After downloading the two files, we read them and load two R data sets.
+```{r}
+train <- read.csv("pml-training.csv")
+test <- read.csv("pml-testing.csv")
+```
+### Data cleaning
+It is possible to see that many features contain a lot of NA values and there are also not significant features like X, user_name,	raw_timestamp_part_1,	raw_timestamp_part_2,	cvtd_timestamp,	new_window and num_window. These features have so been removed from the dataset.
+```{r}
+index <- which(colSums(is.na(train)) == 0 & colSums(train == "") == 0)
+train <- train[,index] # remove features with NA and "" values
+train <- train[, 7:60] # remove non significant features
+```
+
+## 2. Model fitting
+### Cross Validation 
+Cross validation technique is used to limit problems like overfitting. Therefore, first the training data is again partitioned in a training and a test set using the rule of thumb of 70/30%. Then the model is build on this training set and finally evaluated on the test set. 
+```{r}
+set.seed(8503)
+partition <- createDataPartition(y = train$classe, p = 0.6, list = FALSE)
+training <- train[partition, ]
+testing <- train[-partition, ]
+```
+### Model training
+The model for this analysis is built using the random forest algorithm because it
+can manage very well data with a great amount of features reaching at the same time a very high accuracy. The trControl function is used with cross validation and parallel processing.
+```{r, cache = TRUE, warning = FALSE, message = FALSE}
+set.seed(4567)
+trControl = trainControl(method = "cv", number = 4, allowParallel = TRUE)
+model <- train(classe ~ ., data = training, method = "rf", prox = TRUE, 
+               trControl = trControl)
+model
+```
+It is possible to see that the accuracy of the model chosen is 100%, a very efficient model.
+
+### Model evaluation
+Prediction and evaluation are made on the test set giving an accuracy of 99.7%.
+```{r}
+pred <- predict(model, testing)
+confusionMatrix(pred, testing$classe)
+```
+
+
+

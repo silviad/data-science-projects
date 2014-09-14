@@ -39,11 +39,6 @@ shinyUI(
             p("Exploratory analysis of the relationship between well-being and economic/social measures."),            
             sidebarLayout(
                 sidebarPanel(     
-                    helpText("Selecting a measure on the left list below, the first map on right ",
-                             "shows the distribution of the measure selected compared to the ",
-                             "total well-being showed in the second map in the tab map. In addition the ",
-                             "tab regression shows the relationship between the measure (explanatory variable )",
-                             "and the well-being (response variable) in a linear regression model (purple line)."),
                     radioButtons("Parameter", label ="Well-being measure",
                          choices = c("GDP" = "GDP",
                                      "Equality" = "Equality",
@@ -60,8 +55,8 @@ shinyUI(
                 ),
                 mainPanel(
                     tabsetPanel(type = "tabs",
-                        tabPanel("BoxPlot", plotOutput('map')),
-                        tabPanel("Regression model", plotOutput('regression'))
+                        tabPanel("Map", plotOutput('map')),
+                        tabPanel("Regression", plotOutput('regression'))
                     )
                 )
             )

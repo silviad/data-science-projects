@@ -1,11 +1,13 @@
+p(em("Documentation:",a("Project",href="index.html")))
+
 library(shiny)
 
 shinyUI(
     navbarPage("What makes us happy?",
-        tabPanel("Documetation",
-            titlePanel("Well Being in Europe"),
-            p("The data used for this analysis is the data set wellbeing in the UsingR ",
-              "package. The data set is about what makes people happy (well being) in Europe. ",
+        tabPanel("Introduction",
+            titlePanel("Wellbeing in Europe"),
+            p("The data used for this analysis is the data set wellbeing of the package UsingR. ",
+              "The data set is about what makes people happy (well being) in Europe. ",
               "It contains 22 observations, one for each different country. ",
               "Each observation has 12 variables described in the table below:"),
             p("Country. Name of the country. Type: factor."),
@@ -54,16 +56,21 @@ shinyUI(
                         )
                 ),
                 mainPanel(
-                    tabsetPanel(type = "tabs",
-                        tabPanel("Map", plotOutput('map')),
-                        tabPanel("Regression", plotOutput('regression'))
+                    tabsetPanel(type = "tabs",                        
+                        tabPanel("Regression", plotOutput('regression')),
+                        tabPanel("Map", plotOutput('map'))
                     )
                 )
             )
         ),
+        tabPanel("Wellbeing Map",
+            titlePanel("The Map"),
+            p("The map below shows the total wellbeing distribution around Europe."),            
+            plotOutput('wellbeing.map')
+        ),
         tabPanel("Code",
             titlePanel("The code"), 
-            p("The source code is available in the github repository:"), 
+            p("The source code is available here:"), 
             a("https://github.com/silviad/data-science-projects/tree/master/data-science-certification/9-data-products")
         )
    )

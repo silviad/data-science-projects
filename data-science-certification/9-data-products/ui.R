@@ -5,7 +5,7 @@ shinyUI(
         tabPanel("Introduction",
             titlePanel("Wellbeing in Europe"),
             h4("Documentation"),
-            p("Before usign this application, please read this short documentation"),
+            p("Before using this application, please read this short documentation"),
             a("http://silviad.github.io/wellbeingdoc/documentation"),  
             p(""),
             h4("Data set"),

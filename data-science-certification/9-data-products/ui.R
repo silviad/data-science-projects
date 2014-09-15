@@ -71,7 +71,7 @@ shinyUI(
         tabPanel("Code",
             titlePanel("The code"), 
             p("The source code is available here:"), 
-            a("https://github.com/silviad/data-science-projects/tree/master/data-science-certification/9-data-products")
+            a("https://github.com/silviad/wellbeingcode")
         )
    )
 )

@@ -1,11 +1,14 @@
-p(em("Documentation:",a("Project",href="index.html")))
-
 library(shiny)
 
 shinyUI(
     navbarPage("What makes us happy?",
         tabPanel("Introduction",
             titlePanel("Wellbeing in Europe"),
+            h4("Documentation"),
+            p("Before usign this application, please read this short documentation"),
+            a("http://silviad.github.io/wellbeingdoc/documentation"),  
+            p(""),
+            h4("Data set"),
             p("The data used for this analysis is the data set wellbeing of the package UsingR. ",
               "The data set is about what makes people happy (well being) in Europe. ",
               "It contains 22 observations, one for each different country. ",
@@ -26,7 +29,7 @@ shinyUI(
             p("Health.spending. Government health spending (% of government spend). Type: numeric."),
             p("Military.spending. Military spending (% of GDP). Type: numeric."),
             
-            h3("References"),
+            h4("References"),
             a("http://prcweb.co.uk/lab/what-makes-us-happy/"),
             p(""),
             a("http://www.nationalaccountsofwellbeing.org/")
@@ -70,7 +73,7 @@ shinyUI(
         ),
         tabPanel("Code",
             titlePanel("The code"), 
-            p("The source code is available here:"), 
+            p("The source code is available here:"),
             a("https://github.com/silviad/wellbeingcode")
         )
    )

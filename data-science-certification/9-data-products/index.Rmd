@@ -1,0 +1,36 @@
+# Documentation for ShinyApp Wellbeing
+
+## Initial note.
+WARNING. Sometimes, the maps of the application take time to be visualized. On the local system, the visualization is immediate but on the server it can take some seconds. It depends on the server and not on the application. Therefore, please, be patient or reload the application.
+
+## ShinyApp Description
+### Introduction
+The application analyze the data set wellbeing of the package UsingR. The data set is about what makes people happy (well being) in Europe. 
+
+When the application is started, it appears a page with a tab panel on the top. From this tab panel, it is possible to navigate between the different pages of the application:
+
+1. Introduction
+2. Data
+3. Analysis
+4. Wellbeing Map
+5. Code
+
+### Introduction page
+The Introduction page is the home page and it presents a brief description of the data set and its variables.
+There is also a link to this documentation.
+
+### Data page
+The Data page visualizes the data itself in a table format where it is possible to sort the data by column and search values.
+
+### Analysis page
+The Analysis page is the main page. It shows the distribution of the different wellbeing measures on a geographical map and the linear regression model. After selecting a measure in the list on the left of the page, in the main panel on the right there is a tab panel with  two labels:
+
+- Regression: clicking this tab, is it possible to see the relationship between the measure (explanatory variable) and the wellbeing (response variable) in a linear regression model (purple line), higher the slope of the purple line, stronger the relationship
+- Map: clicking on this tab, a map appears with the distribution of the measure selected around Europe.  
+       
+### Wellbeing Map page
+The Wellbeing Map page shows the map of the total wellbeing in Europe for the different countries.
+
+### Code page
+The Code page links to the code files of the ShinyApp Wellbeing. They are loaded in a repo on GitHub.
+

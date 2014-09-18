@@ -52,25 +52,26 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<div id="human-activity-recognition" class="section level1">
-<h1>Human Activity Recognition</h1>
+<div id="qualitative-activity-recognition-of-weight-lifting-exercises" class="section level1">
+<h1>Qualitative Activity Recognition of Weight Lifting Exercises</h1>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. In general, there are many potential applications for Human Activity Recognition, like elderly monitoring, life log systems for monitoring energy expenditure and for supporting weight-loss programs, and digital assistants for weight lifting exercises.</p>
 <p>One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. The goal of the project is to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants who were asked to perform barbell lifts correctly and incorrectly in 5 different ways.</p>
 <div id="references" class="section level3">
 <h3>References</h3>
-<p>For more details see <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a></p>
+<p>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human ’13) . Stuttgart, Germany: ACM SIGCHI, 2013.</p>
+<p>For more details, see <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a></p>
 </div>
 <div id="research-question" class="section level3">
 <h3>Research question</h3>
 <p>The research question for this project can be expressed like:</p>
 <ul>
-<li>Is it possible to predict the manner in which a person perform barbell from his/her movements?</li>
+<li>Is it possible to predict the manner in which a person performs barbell from his/her movements?</li>
 </ul>
-<p>In more details:</p>
+<p>In more detail:</p>
 <ul>
-<li>Is it possible to predict the classe variable from accelerometers measures variables?</li>
+<li>Is it possible to predict the classe variable from accelerometers measures?</li>
 </ul>
 </div>
 </div>
@@ -89,13 +90,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></li>
 </ul>
 <p>respectively.</p>
-<p>After downloading the two files, we read them and load two R data sets.</p>
+<p>After downloading the two files, we load them into two R data sets.</p>
 <pre class="r"><code>train &lt;- read.csv(&quot;pml-training.csv&quot;)
 test &lt;- read.csv(&quot;pml-testing.csv&quot;)</code></pre>
 </div>
 <div id="data-cleaning" class="section level3">
 <h3>Data cleaning</h3>
-<p>In the data set there are 67 variables contain 19216 NA values and other 33 variables contain 19216 empty strings.</p>
+<p>The training set contains 19622 observations but there are 67 variables containing 19216 NA values and other 33 variables containing 19216 empty strings.</p>
 <pre class="r"><code>t &lt;- table(colSums(is.na(train)))
 t</code></pre>
 <pre><code>## 
@@ -105,7 +106,7 @@ t</code></pre>
 <pre><code>## 
 ##     0 19216 
 ##    60    33</code></pre>
-<p>It is possible to ignore these features because the 0.9793% of their values are not significant. Other features in the dataset are not measurements, like X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp and new_window and num_window, and so they can be ignored too. All these features have so been removed from the dataset.</p>
+<p>It is possible to ignore these features because the 0.9793% of their values are not significant. Other features in the dataset are not measurements, like X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp and new_window and num_window, and so they can be ignored too. All these features have so been removed from the training dataset.</p>
 <pre class="r"><code>index &lt;- which(colSums(is.na(train)) == 0 &amp; colSums(train == &quot;&quot;) == 0)
 train &lt;- train[,index] # remove features with NA and &quot;&quot; values
 train &lt;- train[, 7:60] # remove non significant features</code></pre>
@@ -115,7 +116,7 @@ train &lt;- train[, 7:60] # remove non significant features</code></pre>
 <h2>2. Model fitting</h2>
 <div id="cross-validation" class="section level3">
 <h3>Cross Validation</h3>
-<p>Cross validation technique is used to limit problems like overfitting and obtain a high out of sample accuracy and consequently a low out of sample error (we will use accuracy as error measure). Therefore, first the training dataset is partitioned in a training and a test set using the rule of thumb of 70/30%. Then the model is built on this training set and finally evaluated on the test set.</p>
+<p>The cross validation technique is used to limit problems like overfitting and obtain a high out of sample accuracy and consequently a low out of sample error (we will use the accuracy as error measure). Therefore, the training dataset is partitioned in a training and a test set using the rule of thumb of 60/40%. Then the model is built on this training set and finally evaluated on the test set.</p>
 <pre class="r"><code>set.seed(8503)
 partition &lt;- createDataPartition(y = train$classe, p = 0.6, list = FALSE)
 training &lt;- train[partition, ]
@@ -123,7 +124,7 @@ testing &lt;- train[-partition, ]</code></pre>
 </div>
 <div id="model-training" class="section level3">
 <h3>Model training</h3>
-<p>The model for this analysis is built using the random forest algorithm because it can manage very well data with a great amount of features reaching at the same time a very high accuracy. The trControl function is used with cross validation and parallel processing.</p>
+<p>The model for this data set is built using the random forest algorithm because it can manage very well data with a great amount of features reaching at the same time a very high accuracy. The trControl function is used with cross validation and parallel processing.</p>
 <pre class="r"><code>set.seed(4567)
 trControl = trainControl(method = &quot;cv&quot;, number = 4, allowParallel = TRUE)
 model &lt;- train(classe ~ ., data = training, method = &quot;rf&quot;, prox = TRUE, 
@@ -149,7 +150,7 @@ model</code></pre>
 ## 
 ## Accuracy was used to select the optimal model using  the largest value.
 ## The final value used for the model was mtry = 27.</code></pre>
-<p>It is possible to see that the accuracy of the model chosen is 100%, a very accurate model. This is the in sample accuracy, the accuracy obtained on the same data the model is built, and it is always optimistic. More important is the out of sample accuracy, the accuracy on a new data set, a test set to predict, that is expected to be generally lower than the in sample accuracy due to overfitting. Cross validation is used to avoid overfitting and obtain a good out of sample accuracy too.</p>
+<p>It is possible to see that the accuracy of the model chosen is 100%, a very accurate model. This is the in sample accuracy, the accuracy obtained on the same data the model is built on, and it is always optimistic. More important is the out of sample accuracy, the accuracy on a new data set like a test set, that is expected to be generally lower than the in sample accuracy due to overfitting. Cross validation is used to avoid overfitting and obtain a good out of sample accuracy too.</p>
 </div>
 <div id="model-evaluation" class="section level3">
 <h3>Model evaluation</h3>

@@ -22,13 +22,15 @@ shinyServer(
        
        # render measures maps
        output$map <- renderPlot({
-           mapParams <- mapCountryData(sPDF, nameColumnToPlot = input$Parameter, 
+           mapParams <- mapCountryData(sPDF, 
+                                       nameColumnToPlot = input$Parameter, 
                                        mapTitle = input$Parameter, 
                                        mapRegion = "Europe",
                                        colourPalette = colourPalette, 
                                        addLegend = FALSE, 
                                        missingCountryCol = "grey70",
-                                       oceanCol = "lightblue", borderCol = "black")       
+                                       oceanCol = "lightblue", 
+                                       borderCol = "black")       
            do.call(addMapLegend, c(mapParams, legendWidth = 0.5, legendMar = 2, 
                                   legendLabels = "all"))
        
@@ -48,13 +50,15 @@ shinyServer(
        
        # render wellbeing map
        output$wellbeing.map = renderPlot({             
-            mapParamsWell <- mapCountryData(sPDF, nameColumnToPlot = "Well.being", 
+            mapParamsWell <- mapCountryData(sPDF, 
+                                            nameColumnToPlot = "Well.being", 
                                             mapTitle = "Well.being", 
                                             mapRegion = "Europe",
                                             colourPalette = colourPalette, 
                                             addLegend = FALSE, 
                                             missingCountryCol = "grey70",
-                                            oceanCol = "lightblue", borderCol = "black") 
+                                            oceanCol = "lightblue", 
+                                            borderCol = "black") 
             do.call(addMapLegend, c(mapParamsWell, legendWidth = 0.5, legendMar = 2, 
                                     legendLabels = "all"))
        })

@@ -51,9 +51,8 @@ shinyUI(fluidPage(
                      column(4,"Military spending (% of GDP)."), 
                      column(3,"Type: numeric.")),
             h4("References"),
-            a("http://prcweb.co.uk/lab/what-makes-us-happy/"),
-            p(""),
-            a("http://www.nationalaccountsofwellbeing.org/")
+            p("Well-being data is from the New Economics Foundation's ", 
+              a("National Accounts of Well-being", href="http://www.nationalaccountsofwellbeing.org/"))
         ),
         tabPanel("Data",
             titlePanel("The dataset"),

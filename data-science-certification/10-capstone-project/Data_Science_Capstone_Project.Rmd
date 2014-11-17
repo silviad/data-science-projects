@@ -73,9 +73,9 @@ l <- list(tdm.list.twitter[[1]], tdm.list.blogs[[1]], tdm.list.news[[1]])
 display.clouds(l)
 ```
 
-**Sentence length distributions**
+**Text length distributions**
 
-The histograms below show the distribution of sentence length measured in number of characters and in number of words for the three files. The distribution are completely different as expected: shorter sentences with few words for Twitter, longer sentences with more words for the news and the blogs.
+The histograms below show the distribution of text length measured in number of characters and in number of words for the three files. The distribution are completely different as expected: shorter text with few words for Twitter, longer text with more words for the news and the blogs.
 
 ```{r, echo = FALSE, chache=TRUE, warning=FALSE, message=FALSE, fig.height=5, fig.width=10}
 par(mar=c(5.1,4.1,4.1,2.1), mfcol=c(2,3))

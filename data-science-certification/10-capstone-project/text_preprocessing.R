@@ -35,9 +35,10 @@ tokenizer <- function(ngram, docs) {
     # create Term Document Matrix for n.grams
     tokenizer <- function(x) NGramTokenizer(x, Weka_control(min = ngram, 
                                                             max = ngram))
-    tdm <- TermDocumentMatrix(docs, control = list(tokenize = tokenizer
-                                                   #wordLengths = c(1, Inf)
-                                                   ))
+    # only for exploratory analysis
+    tdm <- TermDocumentMatrix(docs, control = list(tokenize = tokenizer))
+    #tdm <- TermDocumentMatrix(docs, control = list(tokenize = tokenizer,
+    #                                               wordLengths = c(1, Inf)))
     # remove sparse term
     #print(paste("remove sparse", date()))
     tdm <- removeSparseTerms(tdm, 0.1)
@@ -121,7 +122,7 @@ display.histogram <- function(file, dir = "sample_archive") {
     max <- max(len)
     bin <- 20
     upper.limit <- max + bin
-    hist.data <- hist(len, main = title, xlab = "Sentence length in characters", 
+    hist.data <- hist(len, main = title, xlab = "Text length in characters", 
                       col = colour, breaks = seq(0, upper.limit, bin), 
                       xlim = c(0, upper.limit), include.lowest = TRUE)     
     
@@ -129,7 +130,7 @@ display.histogram <- function(file, dir = "sample_archive") {
     max <- max(word)
     bin <- 5
     upper.limit <- max + bin
-    hist.data <- hist(word, main = title, xlab = "Sentence length in words", 
+    hist.data <- hist(word, main = title, xlab = "Text length in words", 
                       col = colour, breaks = seq(0, upper.limit, bin),                         
                       xlim = c(0, upper.limit), include.lowest = TRUE)
   
@@ -140,7 +141,7 @@ display.histogram <- function(file, dir = "sample_archive") {
 create.dataframe <- function(total, ngram) {   
     
     # create a data frame
-    #print(paste("dataframe", date()))
+    print(paste("dataframe", date()))
     tdm.df <- data.frame(grams=names(total), total)
     #print(paste(ngram, "n-grams", nrow(tdm.df), sep = " "))
     l <- strsplit(as.character(tdm.df$grams), " ")

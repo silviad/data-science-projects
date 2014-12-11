@@ -1,0 +1,13 @@
+## Documentation for Predictive Shiny App
+
+### Initial note
+
+........
+
+### ShinyApp Description
+When the application is started, it appears a page with **three links**, one for each different context: Twitter, Blogs and News. Clicking on a link, a new application is started for the specific context.
+
+In this second application, it is possible to write in a **text area**. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, **three buttons** appear above the text area.
+
+The buttons show the **three most likely words** predicted: if there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on is pasted into the text area to complete the sentence.
+

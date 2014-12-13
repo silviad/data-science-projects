@@ -1,0 +1,9 @@
+update contractions set contraction = trim(contraction);
+update contractions set word1 = trim(word1);
+update contractions set word2 = trim(word2);
+update contractions set word3 = trim(word3);
+
+update contractions set contraction = lower(contraction);
+update contractions set word1 = lower(word1);
+update contractions set word2 = lower(word2);
+update contractions set word3 = lower(word3);

@@ -1,13 +1,26 @@
-## Documentation for Predictive Shiny App
+## User Guide for Predictive Text Shiny App
 
 ### Initial note
-
-........
+**WARNING.** Sometimes, the pages of the application become grey. On the local system, the visualization is perfect. I think it depends on the server and not on the application. Therefore, please, if the page turns gray be patient and reload/refresh the application or wait some time and retry.
 
 ### ShinyApp Description
-When the application is started, it appears a page with **three links**, one for each different context: Twitter, Blogs and News. Clicking on a link, a new application is started for the specific context.
+**Main page**
 
-In this second application, it is possible to write in a **text area**. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, **three buttons** appear above the text area.
+When the application is started, it appears the main page of the application that contains:
 
-The buttons show the **three most likely words** predicted: if there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on is pasted into the text area to complete the sentence.
+- on the top, a link to this user guide
+- in the middle, **three links**, one for each different context: Twitter, Blogs and News
+- on the bottom, some links to useful documentation: the initial exploratory analysis, a desk slide presentation and the source code of the project.
+
+To continue, a style has to be chosen clicking on one of the three links in the middle, Twitter, Blogs or News. Then a new application is started for the specific context. 
+
+**Specific application page**
+
+This second application is specific for the style chosen. Different colors are used to differentiate the layout: yellow for Twitter, purple for News and green for Blogs as in the exploratory analysis plots.
+
+The page contains a colored **text area** where it is possible to write. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, **three buttons** appear above the text area. **WARNING.** It takes some second to visualize the buttons above the text area, so please be patient and wait the buttons appearing before starting to write in the text area.
+
+The buttons show the **three most likely words** predicted: the most lower is the first, the right one is the second and the left one is the third. If there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on it is pasted into the text area to complete the sentence.
+
+The Reset button cleans the text area to restart writing.
 

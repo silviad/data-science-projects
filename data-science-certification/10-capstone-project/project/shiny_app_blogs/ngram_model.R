@@ -53,18 +53,16 @@ clean.sentence <- function (sentence) {
     # Returns: a cleaned sentence
   
     # ltrim
-    if (trim(sentence) == "") {
+    if (str_trim(sentence) == "") {
         sentence <- "" 
     } 
     # tolower
     sentence <- tolower(sentence)  
     # removeNumbers
     sentence <- gsub('[0-9]', '', sentence)
-    # removePunctuation exept apostrophes and dots between words
-    sentence <- gsub("(\\w)-(\\w)", "\\1\1\\2", sentence)
-    sentence <- gsub("(?!['|\\r|\\n|\\t|.|,|;|:|\"|(|)|?|!])[[:punct:]]+", "", 
-                     sentence, perl=TRUE)
-    sentence <- gsub("\1", "-", sentence, fixed = TRUE)     
+    # removePunctuation exept apostrophes. end of sentence ad dots
+    sentence <- gsub("(?!['|\\r|\\n|\\t|.|,|;|:|\"|(|)|?|!|-])[[:punct:]]+", "", 
+                     sentence, perl=TRUE)   
     # stripWhitespace
     sentence <- gsub("[[:space:]]+", " ", sentence)
     return(sentence)
@@ -237,7 +235,7 @@ expand.sentence <- function (sentence, contractions) {
             sentence.exp <- paste(list.sentences, sentence.tail)
             list.sentences <- sentence.exp
         }
-        list.sentences <- trim(list.sentences)
+        list.sentences <- str_trim(list.sentences)
     }
     return(list.sentences)
 }

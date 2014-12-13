@@ -52,17 +52,27 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<div id="documentation-for-predictive-shiny-app" class="section level2">
-<h2>Documentation for Predictive Shiny App</h2>
+<div id="user-guide-for-predictive-text-shiny-app" class="section level2">
+<h2>User Guide for Predictive Text Shiny App</h2>
 <div id="initial-note" class="section level3">
 <h3>Initial note</h3>
-<p>……..</p>
+<p><strong>WARNING.</strong> Sometimes, the pages of the application become grey. On the local system, the visualization is perfect. I think it depends on the server and not on the application. Therefore, please, if the page turns gray be patient and reload/refresh the application or wait some time and retry.</p>
 </div>
 <div id="shinyapp-description" class="section level3">
 <h3>ShinyApp Description</h3>
-<p>When the application is started, it appears a page with <strong>three links</strong>, one for each different context: Twitter, Blogs and News. Clicking on a link, a new application is started for the specific context.</p>
-<p>In this second application, it is possible to write in a <strong>text area</strong>. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, <strong>three buttons</strong> appear above the text area.</p>
-<p>The buttons show the <strong>three most likely words</strong> predicted: if there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on is pasted into the text area to complete the sentence.</p>
+<p><strong>Main page</strong></p>
+<p>When the application is started, it appears the main page of the application that contains:</p>
+<ul>
+<li>on the top, a link to this user guide</li>
+<li>in the middle, <strong>three links</strong>, one for each different context: Twitter, Blogs and News</li>
+<li>on the bottom, some links to useful documentation: the initial exploratory analysis, a desk slide presentation and the source code of the project.</li>
+</ul>
+<p>To continue, a style has to be chosen clicking on one of the three links in the middle, Twitter, Blogs or News. Then a new application is started for the specific context.</p>
+<p><strong>Specific application page</strong></p>
+<p>This second application is specific for the style chosen. Different colors are used to differentiate the layout: yellow for Twitter, purple for News and green for Blogs as in the exploratory analysis plots.</p>
+<p>The page contains a colored <strong>text area</strong> where it is possible to write. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, <strong>three buttons</strong> appear above the text area. <strong>WARNING.</strong> It takes some second to visualize the buttons above the text area, so please be patient and wait the buttons appearing before starting to write in the text area.</p>
+<p>The buttons show the <strong>three most likely words</strong> predicted: the most lower is the first, the right one is the second and the left one is the third. If there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on it is pasted into the text area to complete the sentence.</p>
+<p>The Reset button cleans the text area to restart writing.</p>
 </div>
 </div>
 

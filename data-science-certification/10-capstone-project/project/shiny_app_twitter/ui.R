@@ -1,14 +1,21 @@
 library(shiny)
 
-shinyUI(fluidPage(
-  
+shinyUI(fluidPage(  
     titlePanel("Predictive Text Shiny App"),
-    tags$style("body {background-color: Gold;}"),
-    h5("Twitter Style"),
-    fluidRow(column(1, uiOutput("uiActionButton3"), offset = 2), 
+    h3("Twitter Style", style = "color:Gold"),
+    h4("Instructions"),
+    p("1. Please, wait until the three bottoms appear above the yellow text area before starting to write."),
+    p("2. If the three buttons are visible, it is possible to start writing in the text area."),
+    p("3. Press the buttons to use these words to complete the sentence."),
+    p("4. Press the Reset button to clean the text area."),
+    br(),
+    br(),
+    fluidRow(column(1, uiOutput("uiActionButton3"), offset = 1), 
              column(1, uiOutput("uiActionButton2"), offset = 1)),
-    fluidRow(column(1, uiOutput("uiActionButton1"), offset = 3)),
-    h5("Type a sentence:"),
-    fluidRow(column(12,tags$textarea(id="sentence", rows="5", cols="50"), offset = 2))
-    
+    br(),
+    fluidRow(column(1, uiOutput("uiActionButton1"), offset = 2)),
+    br(),
+    fluidRow(column(1, uiOutput("reset"), offset = 4)),
+    fluidRow(column(12, tags$textarea(id="sentence", rows="5", cols="50", 
+                            style = "background-color:Gold"), offset = 1))
 ))

@@ -5,9 +5,9 @@ load.libraries.functions <- function() {
     #
   
     # load libraries
-    library(plyr)   
-    library(R.utils)
-    library(data.table)
+    suppressWarnings(library(plyr))   
+    suppressWarnings(library(stringr))
+    suppressWarnings(library(data.table))
     
     # load functions
     source("ngram_model.R")

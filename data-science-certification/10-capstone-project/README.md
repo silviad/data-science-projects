@@ -2,7 +2,7 @@
 Introduction
 
 The goal of the project is to create a product to highlight the prediction 
-algorithm built for the Capstone project of Coursera Specialization. 
+algorithm built for the Capstone project of Coursera Specialization in Data Science. 
 
 For every context (twitter, blog and news) execute the following steps:
 1. execute preproc.corpus function from preprocessing.R package

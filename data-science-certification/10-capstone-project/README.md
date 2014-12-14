@@ -3,6 +3,12 @@
 The goal of the project is to create a product to highlight the prediction 
 algorithm built for the Capstone project of Coursera Specialization in Data Science. 
 
+The main directory of this repo contains the code for the exploratory analysis.
+The sub-directory project contains the code of the project:  
+
+- the procedure of preprocessing text
+- the code for the Shiny application in the sub-directories shiny_app_multi, shiny_app_twitter, shiny_app_blogs e shiny_app_news.
+
 ### Operating instructions
 
 For every context (twitter, blog and news) execute the following steps:

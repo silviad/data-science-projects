@@ -17,8 +17,6 @@ shinyUI(fluidPage(
     br(),
     br(),
     br(),
-    br(),
-    br(),
     h4("Useful documentation"),
     p("The exploratory analysis is available here:", 
       a("exploratory analysis", href="http://rpubs.com/silviad/datasciencereport")),    

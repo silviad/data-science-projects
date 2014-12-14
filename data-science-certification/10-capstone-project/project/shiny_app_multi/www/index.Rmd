@@ -6,21 +6,27 @@
 ### ShinyApp Description
 **Main page**
 
-When the application is started, it appears the main page of the application that contains:
+When the application starts the main page appears, visualizing:
 
 - on the top, a link to this user guide
 - in the middle, **three links**, one for each different context: Twitter, Blogs and News
 - on the bottom, some links to useful documentation: the initial exploratory analysis, a desk slide presentation and the source code of the project.
 
-To continue, a style has to be chosen clicking on one of the three links in the middle, Twitter, Blogs or News. Then a new application is started for the specific context. 
+To continue, a style has to be chosen clicking on one of the three links in the middle, Twitter, Blogs or News. Then a new application starts for the specific context. 
 
 **Specific application page**
 
-This second application is specific for the style chosen. Different colors are used to differentiate the layout: yellow for Twitter, purple for News and green for Blogs as in the exploratory analysis plots.
+This second application is specific for the chosen style. Different colors are used to differentiate the layout: yellow for Twitter, purple for News and green for Blogs as in the exploratory analysis plots.
 
-The page contains a colored **text area** where it is possible to write. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, **three buttons** appear above the text area. **WARNING.** It takes some second to visualize the buttons above the text area, so please be patient and wait the buttons appearing before starting to write in the text area.
+The page contains a colored **text area** where it is possible to write. Above the text area there are **three buttons** that show the three most likely words predicted: the most lower is the first, the right one is the second and the left one is the third. If there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on it is pasted into the text area to complete the sentence.
 
-The buttons show the **three most likely words** predicted: the most lower is the first, the right one is the second and the left one is the third. If there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on it is pasted into the text area to complete the sentence.
+**WARNING.** It takes some second to visualize the buttons above the text area, so please be patient and wait the buttons appearing before starting to write in the text area.
+
+The text area is resizable clicking on the bottom left corner of the area itself.
 
 The Reset button cleans the text area to restart writing.
+
+On the left, a summary displays the top 20 words predicted by the algorithm ordered by descending frequency.
+
+**NOTE**. When you put the five phrases drawn from Twitter or news articles for the peer review, add a space after the last word so the algorithm can predict the next word.
 

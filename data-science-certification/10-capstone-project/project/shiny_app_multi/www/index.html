@@ -61,18 +61,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="shinyapp-description" class="section level3">
 <h3>ShinyApp Description</h3>
 <p><strong>Main page</strong></p>
-<p>When the application is started, it appears the main page of the application that contains:</p>
+<p>When the application starts the main page appears, visualizing:</p>
 <ul>
 <li>on the top, a link to this user guide</li>
 <li>in the middle, <strong>three links</strong>, one for each different context: Twitter, Blogs and News</li>
 <li>on the bottom, some links to useful documentation: the initial exploratory analysis, a desk slide presentation and the source code of the project.</li>
 </ul>
-<p>To continue, a style has to be chosen clicking on one of the three links in the middle, Twitter, Blogs or News. Then a new application is started for the specific context.</p>
+<p>To continue, a style has to be chosen clicking on one of the three links in the middle, Twitter, Blogs or News. Then a new application starts for the specific context.</p>
 <p><strong>Specific application page</strong></p>
-<p>This second application is specific for the style chosen. Different colors are used to differentiate the layout: yellow for Twitter, purple for News and green for Blogs as in the exploratory analysis plots.</p>
-<p>The page contains a colored <strong>text area</strong> where it is possible to write. The text area is resizable clicking on the bottom left corner of the area itself. During the typing, <strong>three buttons</strong> appear above the text area. <strong>WARNING.</strong> It takes some second to visualize the buttons above the text area, so please be patient and wait the buttons appearing before starting to write in the text area.</p>
-<p>The buttons show the <strong>three most likely words</strong> predicted: the most lower is the first, the right one is the second and the left one is the third. If there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on it is pasted into the text area to complete the sentence.</p>
+<p>This second application is specific for the chosen style. Different colors are used to differentiate the layout: yellow for Twitter, purple for News and green for Blogs as in the exploratory analysis plots.</p>
+<p>The page contains a colored <strong>text area</strong> where it is possible to write. Above the text area there are <strong>three buttons</strong> that show the three most likely words predicted: the most lower is the first, the right one is the second and the left one is the third. If there is a space after the last word typed, the algorithm predicts the next word, otherwise implements sentence completion with prediction. If a button is pressed, the word displayed on it is pasted into the text area to complete the sentence.</p>
+<p><strong>WARNING.</strong> It takes some second to visualize the buttons above the text area, so please be patient and wait the buttons appearing before starting to write in the text area.</p>
+<p>The text area is resizable clicking on the bottom left corner of the area itself.</p>
 <p>The Reset button cleans the text area to restart writing.</p>
+<p>On the left, a summary displays the top 20 words predicted by the algorithm ordered by descending frequency.</p>
+<p><strong>NOTE</strong>. When you put the five phrases drawn from Twitter or news articles for the peer review, add a space after the last word so the algorithm can predict the next word.</p>
 </div>
 </div>
 
